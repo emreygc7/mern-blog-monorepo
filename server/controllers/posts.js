@@ -1,0 +1,15 @@
+import Post from "../models/posts.js";
+
+
+const getPosts = async (req, res) => {
+  try {
+    const post = await Post.find();
+    res.status(200).json(post);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
+export {
+  getPosts,
+}
