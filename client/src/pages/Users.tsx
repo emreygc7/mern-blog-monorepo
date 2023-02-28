@@ -43,7 +43,7 @@ function Users() {
   if(UsersError) return <div>Error.</div>
   return (
     <div className='flex flex-col gap-5'>
-      <h1 className='text-2xl bg-white py-3 px-2'>Users</h1>
+      <h1 className='text-2xl bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200 py-3 px-2'>Users</h1>
       <List removeUser={removeUser}/> 
     </div>
   )
