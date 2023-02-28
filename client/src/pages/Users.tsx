@@ -1,43 +1,51 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import LoadingPage from '../components/common/LoadingPage'
+import useFetch from '../hooks/useFetch'
+import { usersStore } from '../stores/usersStore'
+import { useSnapshot } from 'valtio'
+import List from '../components/Users/List'
+import { delete_user } from '../api/user'
+import toast from 'react-hot-toast'
 
 function Users() {
+
+  const state = useSnapshot(usersStore)
+
+  const {
+    data: UsersData,
+    isLoading: UsersIsLoading,
+    error: UsersError,
+    mutate
+  } = useFetch('/users')
+
+  useEffect(() => {
+    if(UsersData){
+      usersStore.users = UsersData
+    }
+  },[UsersData])
+
+  console.log("USERRRRRRRRS" , state.users);
+
+  const removeUser = async (id: string) => {
+    try{
+      const response = await delete_user(id)
+      if(response.status === 200) {
+        console.log(response)
+        toast.success('User deleted')
+        mutate()
+      }
+    }catch(e){
+      console.log(e);
+    }
+  }
+  
+  if(UsersIsLoading) return <LoadingPage />
+  if(UsersError) return <div>Error.</div>
   return (
-    <ul className="flex border-b border-gray-200 text-center">
-  <li className="flex-1 cursor-pointer">
-    <span 
-      className="relative block border-t border-l border-r border-gray-200 bg-white p-4 text-sm font-medium"
-    >
-      <span className="absolute inset-x-0 -bottom-px h-px w-full bg-white"></span>
-
-      All
-    </span>
-  </li>
-
-  <li className="flex-1">
-    <span 
-      className="block bg-gray-100 p-4 text-sm font-medium text-gray-500 ring-1 ring-inset ring-white"
-    >
-      Messages
-    </span>
-  </li>
-
-  <li className="flex-1">
-    <span 
-      className="block bg-gray-100 p-4 text-sm font-medium text-gray-500 ring-1 ring-inset ring-white"
-    >
-      Archive
-    </span>
-  </li>
-
-  <li className="flex-1">
-    <span 
-      className="block bg-gray-100 p-4 text-sm font-medium text-gray-500 ring-1 ring-inset ring-white"
-    >
-      Notifications
-    </span>
-  </li>
-</ul>
-
+    <div className='flex flex-col gap-5'>
+      <h1 className='text-2xl bg-white py-3 px-2'>Users</h1>
+      <List removeUser={removeUser}/> 
+    </div>
   )
 }
 

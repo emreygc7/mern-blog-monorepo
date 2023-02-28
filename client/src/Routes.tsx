@@ -7,6 +7,8 @@ const Register = lazy(() => import('./pages/Register'))
 const Login = lazy(() => import('./pages/Login'))
 const CategoryList = lazy(() => import('./pages/CategoryList'))
 const Users = lazy(() => import('./pages/Users'))
+const Profile = lazy(() => import('./pages/Profile'))
+
 
 function Routes() {
   return (
@@ -51,6 +53,15 @@ function Routes() {
             </Suspense>
           </Default>
         } />
+
+        <Route path="/user/:id" element={
+          <Default>
+            <Suspense fallback={<LoadingPage />}>
+              <Profile />
+            </Suspense>
+          </Default>
+        } />
+
 
         
         

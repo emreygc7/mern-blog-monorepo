@@ -26,6 +26,9 @@ app.use('/categories', categoriesRoutes )
 app.use('/users', usersRoutes)
 app.use('/auth', authRoutes)
 
+
+
+mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,

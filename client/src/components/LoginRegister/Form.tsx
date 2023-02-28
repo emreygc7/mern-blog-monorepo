@@ -44,7 +44,7 @@ function Form() {
             className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
             placeholder="Enter username"
             id='username'
-            onChange={(e) => state.setUser("username", e.target.value )}
+            onChange={(e) => usersStore.setUser("username", e.target.value )}
           />
 
         <label htmlFor="email" className="sr-only">Email</label>
@@ -55,7 +55,7 @@ function Form() {
             type="email"
             className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
             placeholder="Enter email"
-            onChange={(e) => state.setUser("email", e.target.value ) }
+            onChange={(e) => usersStore.setUser("email", e.target.value ) }
           />
 
           <span className="absolute inset-y-0 right-4 inline-flex items-center">
@@ -85,7 +85,7 @@ function Form() {
             type={showPassword ? 'text' : 'password'}
             className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
             placeholder="Enter password"
-            onChange={(e) => state.setUser("password", e.target.value )}
+            onChange={(e) => usersStore.setUser("password", e.target.value )}
           />
 
           <span className="absolute inset-y-0 right-4 inline-flex items-center cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
