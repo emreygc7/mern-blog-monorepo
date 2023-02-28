@@ -55,7 +55,7 @@ function Header({darkMode, setDarkMode}: Props) {
             <img src="https://picsum.photos/seed/picsum/200/300" alt="" className='rounded-full w-8 h-8' onClick={() => setMenuOpen(!menuOpen)} />
             {
                 menuOpen && (
-                    <div className='absolute right-0 w-48 bg-white dark:bg-slate-900 rounded-lg shadow-lg py-2'>
+                    <div className='absolute right-0 w-48 bg-white dark:bg-slate-900 rounded-lg shadow-lg py-2 z-50'>
                         {
                           links.map((link, key) => (
                             <Link to={link.path} className='flex items-center gap-1 px-4 py-2 text-sm hover:bg-slate-200 dark:hover:bg-slate-700 '>
