@@ -1,10 +1,11 @@
 import React from 'react'
 import useFetch from '../hooks/useFetch'
 import { useParams } from 'react-router-dom'
+import TopBar from '../components/Profile/TopBar';
+import LoadingPage from '../components/common/LoadingPage';
 
 function Profile() {
   const { id } = useParams<{id: string}>()
-  console.log(id);
   
   const { 
     data: UserData,
@@ -12,9 +13,13 @@ function Profile() {
     error: UserError,
     mutate
   } = useFetch(`/users/${id}`)
-  
+
+  if (UserIsLoading) return <LoadingPage />
+  if (UserError) return <div>Error</div>
   return (
-    <div>Profile</div>
+    <div>
+      <TopBar data={UserData}  />
+    </div>
   )
 }
 
