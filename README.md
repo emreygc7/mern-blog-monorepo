@@ -33,10 +33,15 @@ and fire!
 
 
 **Language:** TypeScript
+
 **Framework:** React
-**Boilerplate:** Vite 
+
+**Boilerplate:** Vite
+
 **Style:** tailwindcss
+
 **State Management:** valtio
+
 
 **Packages**
  - react-router-dom
@@ -46,11 +51,16 @@ and fire!
  - react-hot-toast
  - react-icons
 
+
+
 > Backend
 
 **Language:** JavaScript & Node.js
+
 **Framework:** Express.js
+
 **Database:** Mongo DB
+
 
 **Packages**
 
